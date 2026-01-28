@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  # 1. Database (Secure)
+  db:
+    image: postgres:15-alpine
+    container_name: log-db-prod
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    # In Prod, we might NOT want to expose 5432 to the internet
+    # ports:
+    #   - "5432:5432"
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. Backend (Go)
+  backend:
+    build: ../backend
+    container_name: log-backend-prod
+    environment:
+      - DB_HOST=db
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - JWT_SECRET=${JWT_SECRET} # Important for Prod!
+    depends_on:
+      db:
+        condition: service_healthy # Wait for DB to be ready
+    ports:
+      # Expose only Syslog ports (and maybe API if not going through Nginx?)
+      # But usually we go through Nginx. For Syslog (UDP/TCP), we need to expose.
+      - "514:514/udp"
+      - "514:514/tcp"
+    restart: always
+
+  # 3. Frontend (Nginx as Gateway)
+  frontend:
+    build: ../frontend
+    container_name: log-frontend-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/nginx/certs
+    restart: always
+
+volumes:
+  postgres_data_prod:

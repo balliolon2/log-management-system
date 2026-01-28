@@ -1,0 +1,40 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Backend (Go)
+/backend/bin/
+# /backend/vendor/ # Uncomment if you don't want to commit dependencies
+/backend/*.exe
+/backend/*.test
+/backend/go.work
+
+# Frontend (Node/React)
+/frontend/node_modules/
+/frontend/build/
+/frontend/dist/
+/frontend/.env.local
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# Deploy & Secrets (CRITICAL)
+/deploy/.env
+/deploy/certs/
+/deploy/*.pem
+/deploy/postgres_data/
+
+# Tests (Python)
+/tests/__pycache__/
+*.pyc
+*.pyo
+
+# Docker
+docker-compose.override.yml
