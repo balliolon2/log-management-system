@@ -99,12 +99,23 @@ If you need to demonstrate the SaaS capability without a cloud server, use **ngr
 ## Project Structure
 
 ```
-/backend       # Go Backend (API, Ingestion, Alert Engine)
-  /internal    # Core Logic
-    /ingest    # Syslog & HTTP Handlers
-    /normalize # Log Parsing Logic
+/backend       # Go Backend
+  /cmd         # Main entry point
+  /internal    # Application Logic
+    /alert     # Alert Engine & Rules
+    /auth      # JWT Authentication & Middleware
+    /handler   # HTTP API Handlers
+    /ingest    # Syslog (UDP/TCP) & Ingestion Logic
     /job       # Background Jobs (Retention)
-/frontend      # React Frontend (Dashboard)
-/deploy        # Deployment Config (Docker, Nginx, Certs)
+    /models    # Database Structs
+    /normalize # Log Parsing & Normalization
+    /repository # Database Access Layer
+/frontend      # React Frontend (Vite + Tailwind)
+/deploy        # Deployment Config
+  /certs       # SSL Certificates (Self-signed)
+  .env         # Environment Variables (Secrets)
+  docker-compose.yml # Production-ready Compose
+  nginx.conf   # Reverse Proxy & TLS Config
+  init.sql     # DB Schema & Seed Data
 /tests         # Python Simulation Scripts
 ```
