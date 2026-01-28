@@ -96,6 +96,16 @@ If you need to demonstrate the SaaS capability without a cloud server, use **ngr
 ]
 ```
 
+### File Ingestion (Raw Text)
+
+To ingest a raw text log file (e.g., specific application logs):
+
+```bash
+cd samples
+# Install requests if needed: pip install requests
+python file_ingestor.py dummy.log
+```
+
 ## Project Structure
 
 ```
