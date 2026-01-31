@@ -25,7 +25,7 @@ function Dashboard() {
       setLoading(true);
       // ยิงไปที่ Backend Go ของเรา (Port 8080)
       const res = await axios.get(
-        `http://localhost:8080/api/logs?q=${query}&limit=50`,
+        `/api/logs?q=${query}&limit=50`,
       );
       setLogs(res.data || []);
     } catch (err) {

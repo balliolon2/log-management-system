@@ -73,7 +73,7 @@ func main() {
 	// 7. Setup Routes (API Endpoints)
 
 	// Auth Routes (ไม่ต้องใช้ middleware)
-	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/api/login", func(w http.ResponseWriter, r *http.Request) {
 		corsHandler(w, r)
 		if r.Method == http.MethodOptions {
 			return
@@ -81,7 +81,7 @@ func main() {
 		authHandler.LoginHandler(w, r)
 	})
 
-	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/api/register", func(w http.ResponseWriter, r *http.Request) {
 		corsHandler(w, r)
 		if r.Method == http.MethodOptions {
 			return

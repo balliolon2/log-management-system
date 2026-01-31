@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { authService } from "../utils/auth";
 import { ShieldAlert, Lock, User } from "lucide-react";
@@ -17,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("/api/login", {
         username,
         password,
       });
@@ -105,6 +105,14 @@ function Login() {
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
+
+          {/* Register Link */}
+          <div className="mt-6 text-center text-slate-400">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium">
+              Create Account
+            </Link>
+          </div>
 
           {/* Demo Credentials */}
           <div className="mt-6 p-4 bg-slate-700/50 rounded-lg border border-slate-600">

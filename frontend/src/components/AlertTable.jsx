@@ -11,7 +11,7 @@ function AlertTable() {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:8080/api/alerts?tenant=demo&limit=50`,
+        `/api/alerts?tenant=demo&limit=50`,
       );
       setAlerts(res.data || []);
     } catch (err) {

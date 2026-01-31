@@ -1,0 +1,14 @@
+log-backend-prod  | 2026/01/30 12:39:24 ✅ Loaded 2 alert rules
+log-backend-prod  | 2026/01/30 12:39:24 🚨 Alert Engine started
+log-backend-prod  | 2026/01/30 12:39:24 🚀 HTTP Server starting on :8080
+log-backend-prod  | 2026/01/30 12:39:24 🔐 Auth APIs:
+log-backend-prod  | 2026/01/30 12:39:24    POST http://localhost:8080/login
+log-backend-prod  | 2026/01/30 12:39:24    POST http://localhost:8080/register
+log-backend-prod  | 2026/01/30 12:39:24 📊 Protected APIs (require JWT token):
+log-backend-prod  | 2026/01/30 12:39:24    GET http://localhost:8080/api/logs
+log-backend-prod  | 2026/01/30 12:39:24    GET http://localhost:8080/api/alerts
+log-backend-prod  | 2026/01/30 12:39:24 📥 Ingest API:
+log-backend-prod  | 2026/01/30 12:39:24    POST http://localhost:8080/ingest
+log-backend-prod  | 2026/01/30 12:39:24 🕰️ Retention Job started: Delete logs older than 7 days
+log-backend-prod  | 2026/01/30 12:39:24 🔥 Syslog UDP server (with Alerts) listening on port 514
+log-backend-prod  | 2026/01/30 12:39:24 🔥 Syslog TCP server (with Alerts) listening on port 514
