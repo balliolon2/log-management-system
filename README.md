@@ -2,6 +2,8 @@
 
 A centralized log management system with multi-tenant support, real-time alerting, and secure SaaS capabilities. Built for the Cyber Defense Internship.
 
+(Presentation Slide)[https://www.canva.com/design/DAG_FyXAvuI/TOE90DIqCpuBED4YT8N-hw/edit?utm_content=DAG_FyXAvuI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton]
+
 ## Features
 
 - **Multi-Protocol Ingestion**: Supports Syslog (UDP/TCP), HTTP API (JSON), and Batch File Ingestion.
